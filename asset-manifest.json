@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/social-media/static/css/main.1d15cddb.css",
+    "main.js": "/social-media/static/js/main.800d10b4.js",
+    "index.html": "/social-media/index.html",
+    "main.1d15cddb.css.map": "/social-media/static/css/main.1d15cddb.css.map",
+    "main.800d10b4.js.map": "/social-media/static/js/main.800d10b4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1d15cddb.css",
+    "static/js/main.800d10b4.js"
+  ]
+}
