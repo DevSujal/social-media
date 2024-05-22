@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import Topbar from "./components/Topbar";
+import Footer from "./components/Footer";
+import { useState } from "react";
 
-function App() {
+import "./App.css";
+import {HashRouter, Route, Routes } from "react-router-dom";
+import Home from "./Pages/Home";
+import CreatePost from "./Pages/CreatePost";
+import PostListProvider from "./Store/PostListStore";
+
+export default function App() {
+  const [pageTheme, setTheme] = useState(
+    createTheme({
+      palette: {
+        mode: "dark",
+      },
+    })
+  );
+
+  const changeTheme = () => {
+    setTheme((prev) =>
+      createTheme({
+        palette: {
+          mode: prev.palette.mode === "light" ? "dark" : "light",
+        },
+      })
+    );
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={pageTheme}>
+      <PostListProvider>
+        <HashRouter>
+          <CssBaseline />
+          <Topbar changeTheme={changeTheme} />
+          <Routes>
+            <Route exact path="/" element={<Home />}></Route>
+            <Route exact path="/CreatePost" element={<CreatePost />}></Route>
+          </Routes>
+          <Footer />
+        </HashRouter>
+      </PostListProvider>
+    </ThemeProvider>
   );
 }
-
-export default App;
